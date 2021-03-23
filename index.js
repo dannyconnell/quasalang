@@ -1,3 +1,5 @@
+// TODO: put createCSV & generate in own files
+
 var fs = require('fs')
 
 const createCSV = () => {
