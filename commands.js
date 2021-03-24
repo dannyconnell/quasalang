@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+let pjson = require('./package.json')
+
 const program = require('commander')
 const {
   createCSV,
@@ -21,7 +23,7 @@ Step 3. Generate your language files:
 `
 
 program
-  .version('0.0.1')
+  .version(pjson.version)
   .description('Generate Quasar i18n language files from a CSV file. Run it from the root of a Quasar project.')
   .addHelpText('after', helpText)
 
