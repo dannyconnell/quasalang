@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^7.2.0",
-    "csv-parser": "^3.0.0"
+    "csv-parser": "^3.0.0",
+    "inquirer": "^8.0.0"
   }
 }

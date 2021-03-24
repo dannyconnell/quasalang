@@ -1,4 +1,5 @@
 var fs = require('fs')
+const { prompt } = require('inquirer')
 
 module.exports = function() { 
   this.generate = function(csvPath, outputPath) {
@@ -61,69 +62,97 @@ module.exports = function() {
         });
         mainIndexFile += `}`
     
-        // delete the output folder if it exists
+        // check if output folder exists & prompt to confirm
         if (fs.existsSync(outputPath)) {
-          try {
-            fs.rmdirSync(outputPath, { recursive: true });
-              // console.log(`${outputPath} is deleted!`);
-            } catch (err) {
-                console.error(`Error while deleting ${outputPath}.`);
+          prompt([
+            {
+              type: 'confirm',
+              name: 'confirmDeleteOutputFolder',
+              message: `Folder ${outputPath} exists? Overwrite it?`
             }
-        }
-    
-        // write the output folder if it doesn't exist
-        if (!fs.existsSync(outputPath)){
-          fs.mkdirSync(outputPath);
-        }
-    
-        // write the main index file
-        fs.writeFile(`${outputPath}/index.js`, mainIndexFile, function(err) {
-          if(err) {
-            return console.log(err);
-          }
-          console.log(`${outputPath}/index.js file was saved!`);
-    
-          // generate individual language folders and index.js files
-          languagesAndCodesAsObjects.forEach(langObj => {
-            // console.log(langObj)
-      
-            // create language folder
-            if (!fs.existsSync(`${outputPath}/${langObj.code}`)){
-              fs.mkdirSync(`${outputPath}/${langObj.code}`);
+          ]).then(answers => {
+            if (answers.confirmDeleteOutputFolder) {
+              deleteOutputFolder()
             }
-      
-            // generate language index file
-            let languageIndexFile = ``
-      
-            // add language comment to the top
-            languageIndexFile += `// ${langObj.lang}, ${langObj.code}\n`
-      
-            // add watermark
-            languageIndexFile += `// ${watermark}\n\n`
-      
-            // add opening export statement
-            languageIndexFile += `export default {\n`
-      
-            // add translations
-            results.forEach(result => {
-              // console.log('result', result)
-              languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
-            });
-      
-            // add closing brace
-            languageIndexFile += `}`
-      
-            // write the language index file
-            let languageIndexFilePath = `${outputPath}/${langObj.code}/index.js`
-            fs.writeFile(`${languageIndexFilePath}`, languageIndexFile, function(err) {
-              if(err) {
-                return console.log(err);
+          })
+        }
+        else {
+          deleteOutputFolder()
+        }
+
+
+        // delete the output folder if it exists
+        function deleteOutputFolder() {
+          if (fs.existsSync(outputPath)) {
+            try {
+              fs.rmdirSync(outputPath, { recursive: true });
+                writeFiles()
+              } catch (err) {
+                  console.error(`Error while deleting ${outputPath}.`);
+                  console.error(err)
               }
-              console.log(`${languageIndexFilePath} file was saved!`);
-            })
+          }
+          else {
+            writeFiles()
+          }
+        }
+    
+        // write files
+        function writeFiles() {
+          // write the output folder if it doesn't exist
+          if (!fs.existsSync(outputPath)){
+            fs.mkdirSync(outputPath, { recursive: true });
+          }
       
-          });
-        })
+          // write the main index file
+          fs.writeFile(`${outputPath}/index.js`, mainIndexFile, function(err) {
+            if(err) {
+              return console.log(err);
+            }
+            console.log(`${outputPath}/index.js file was saved!`);
+      
+            // generate individual language folders and index.js files
+            languagesAndCodesAsObjects.forEach(langObj => {
+              // console.log(langObj)
+        
+              // create language folder
+              if (!fs.existsSync(`${outputPath}/${langObj.code}`)){
+                fs.mkdirSync(`${outputPath}/${langObj.code}`);
+              }
+        
+              // generate language index file
+              let languageIndexFile = ``
+        
+              // add language comment to the top
+              languageIndexFile += `// ${langObj.lang}, ${langObj.code}\n`
+        
+              // add watermark
+              languageIndexFile += `// ${watermark}\n\n`
+        
+              // add opening export statement
+              languageIndexFile += `export default {\n`
+        
+              // add translations
+              results.forEach(result => {
+                // console.log('result', result)
+                languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
+              });
+        
+              // add closing brace
+              languageIndexFile += `}`
+        
+              // write the language index file
+              let languageIndexFilePath = `${outputPath}/${langObj.code}/index.js`
+              fs.writeFile(`${languageIndexFilePath}`, languageIndexFile, function(err) {
+                if(err) {
+                  return console.log(err);
+                }
+                console.log(`${languageIndexFilePath} file was saved!`);
+              })
+        
+            });
+          })
+        }
     
       })
   }
