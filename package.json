@@ -8,12 +8,26 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Danny Connell",
+  "license": "MIT",
   "dependencies": {
     "commander": "^7.2.0",
     "csv-parser": "^3.0.0",
     "inquirer": "^8.0.0",
     "rimraf": "^3.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannyconnell/quasalang.git"
+  },
+  "keywords": [
+    "quasar",
+    "quasar framework",
+    "i18n",
+    "csv"
+  ],
+  "bugs": {
+    "url": "https://github.com/dannyconnell/quasalang/issues"
+  },
+  "homepage": "https://github.com/dannyconnell/quasalang#readme"
 }
