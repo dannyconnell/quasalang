@@ -195,7 +195,7 @@ $ quasalang g -nw
 
 ## Use Empty Rows to Split Up Your Phrases
 
-You can leave empty rows in your CSV file, like this:
+You can leave empty rows in your CSV file, like this (pretend that the cells with `[empty]` in are actually empty):
 
 | Key                     | English, en-US | French, fr          | German, de      | Russian, ru     |
 |-------------------------|----------------|---------------------|-----------------|-----------------|
