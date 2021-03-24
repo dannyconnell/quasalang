@@ -31,6 +31,7 @@ program
   .option('-i, --input <mode>', 'Path to input CSV', 'translations.csv')
   .option('-o, --output <mode>', 'Path to i18n output folder', 'src/i18n')
   .option('-f, --force', 'Force write files (without prompt)', false)
+  .option('-nw, --nowatermark', 'Disable the watermark ("This file was auto-generated..") ', false)
   .description('Generate your i18n folder & all language files based on a CSV file')
   .action((options) => {
     generate(options)
