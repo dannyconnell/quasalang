@@ -6,9 +6,24 @@ const {
   generate
 } = require('./index.js')
 
+const helpText = `
+
+Getting Started
+===============
+
+Step 1. Create a sample CSV file (/translations.csv):
+  $ quasalang create-csv
+
+Step 2. Add your own languages & phrases to /translations.csv
+
+Step 3. Generate your language files:
+  $ quasalang generate
+`
+
 program
   .version('0.0.1')
-  .description('Generate Quasar i18n language files from a CSV file')
+  .description('Generate Quasar i18n language files from a CSV file. Run it from the root of a Quasar project.')
+  .addHelpText('after', helpText)
 
 program
   .command('generate')
