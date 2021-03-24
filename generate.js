@@ -20,8 +20,18 @@ module.exports = function() {
       .on('data', (data) => results.push(data))
       .on('end', () => {
     
+        // get first row that has data
+        let firstRowWithData = {}
+        for (let i = 0; i < results.length; i++) {
+          const result = results[i]
+          if (result.Key && !result.Key.startsWith('#')) {
+            firstRowWithData = result
+            break;
+          }
+        }
+
         // get languages and codes
-        let languagesAndCodes = Object.assign({}, results[0])
+        let languagesAndCodes = Object.assign({}, firstRowWithData)
         delete languagesAndCodes['Key']
         languagesAndCodes = Object.keys(languagesAndCodes)
         
@@ -146,9 +156,19 @@ module.exports = function() {
         
               // add translations
               results.forEach(result => {
-                // skip blank rows
+                // row is not empty
                 if (result.Key) {
-                  languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
+                  // add comments if row is a comment
+                  if (result.Key.startsWith('#')) {
+                    languageIndexFile += `\t// ${result.Key.substring(1).trim()}\n`
+                  }
+                  else {
+                    languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
+                  }
+                }
+                // row is empty, add a blank line
+                else {
+                  languageIndexFile += `\n`
                 }
               });
         
