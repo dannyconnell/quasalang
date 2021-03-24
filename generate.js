@@ -146,7 +146,10 @@ module.exports = function() {
         
               // add translations
               results.forEach(result => {
-                languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
+                // skip blank rows
+                if (result.Key) {
+                  languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
+                }
               });
         
               // add closing brace
@@ -175,7 +178,7 @@ module.exports = function() {
 
         // log write messages
         function logWriteMessages() {
-          console.log(`Wrote ${filesWrittenMessage.length} files:`)
+          console.log(`\nWrote ${filesWrittenMessage.length} files:`)
           console.table(filesWrittenMessage)
         }
     
