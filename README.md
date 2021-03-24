@@ -5,7 +5,7 @@
 
 Quasalang is a global CLI tool that allows you to generate all your i18n language files (including the main index.js file) instantly from a single, easy to update CSV file.
 
-It will also generate a sample CSV file for you so you can easily get started.
+It will also generate a sample CSV file for you, so you can easily get started.
 
 You can also organise your phrases with empty lines & comments.
 
@@ -56,7 +56,7 @@ This will generate a CSV file at `/translations.csv` that looks like this:
 
 ### Step 3: Add your own languages & translations
 
-Use a CSV editor (such as the [VSCode Extension "Edit csv"](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv)) to add your own languages.
+Use a CSV editor (such as the [VSCode Extension "Edit csv"](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv)) to add your own languages & phrases.
 
 **Be sure to use the format** `Language, code` in the header row e.g. `Russian, ru`:
 
