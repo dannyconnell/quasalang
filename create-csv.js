@@ -1,6 +1,10 @@
-"use strict"
+var fs = require('fs')
 
-export default function createCSV(path) {
-  console.log('createCSV')
-  if (path) console.log(path)
+module.exports = function() { 
+  this.createCSV = function() {
+    fs.copyFile(`${__dirname}/sample-csv/translations.csv`, `translations.csv`, (err) => {
+      if (err) throw err
+      console.log(`/translations.csv was generated.`)
+    })
+  }
 }
