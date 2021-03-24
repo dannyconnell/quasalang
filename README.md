@@ -195,17 +195,17 @@ $ quasalang g -nw
 
 ## Use Empty Rows to Split Up Your Phrases
 
-You can leave empty rows in your CSV file, like this (pretend that the cells with `[empty]` in are actually empty):
+You can leave empty rows in your CSV file, like this:
 
 | Key                     | English, en-US | French, fr          | German, de      | Russian, ru     |
 |-------------------------|----------------|---------------------|-----------------|-----------------|
-| <span style="color: white">[empty]</span> |                |                     |                 |                 |
+|  |                |                     |                 |                 |
 | hello                   | Hello          | Bonjour             | Hallo           | Привет          |
 | goodbye                 | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
 | thanks                  | Thanks         | Merci               | Danke           | Спасибо         |
-| <span style="color: white">[empty]</span> |                |                     |                 |                 |
+|  |                |                     |                 |                 |
 | buttHair                | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
-| <span style="color: white">[empty]</span> |                |                     |                 |                 |
+|  |                |                     |                 |                 |
 
 And this will generate equivalent empty lines in your generated language files:
 
@@ -230,15 +230,15 @@ You can add comments to your CSV file to create sections like this:
 
 | Key         | English, en-US | French, fr          | German, de      | Russian, ru     |
 |-------------|----------------|---------------------|-----------------|-----------------|
-| <span style="color: white">[empty]</span>            |                |                     |                 |                 |
+|             |                |                     |                 |                 |
 | # Greetings |                |                     |                 |                 |
 | hello       | Hello          | Bonjour             | Hallo           | Привет          |
 | goodbye     | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
 | thanks      | Thanks         | Merci               | Danke           | Спасибо         |
-| <span style="color: white">[empty]</span>            |                |                     |                 |                 |
+|             |                |                     |                 |                 |
 | # Hair Related     |                |                     |                 |                 |
 | buttHair    | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
-| <span style="color: white">[empty]</span>            |                |                     |                 |                 |
+|             |                |                     |                 |                 |
 
 And this will add equivalent comments to your generated files:
 
