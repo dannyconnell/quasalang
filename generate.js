@@ -19,7 +19,6 @@ module.exports = function() {
       .pipe(csv())
       .on('data', (data) => results.push(data))
       .on('end', () => {
-        // console.log('results: ', results)
     
         // get languages and codes
         let languagesAndCodes = Object.assign({}, results[0])
@@ -30,7 +29,6 @@ module.exports = function() {
         let languagesAndCodesAsObjects = []
         
         languagesAndCodes.forEach(languageAndCode => {
-          // console.log('languageAndCode: ', languageAndCode)
           let langAndCode = languageAndCode
           let lang = languageAndCode.split(',')[0]
           let code = languageAndCode.split(',')[1].trim()
@@ -119,7 +117,6 @@ module.exports = function() {
             if(err) {
               return console.log(err);
             }
-            // console.log(`${outputPath}/index.js file was saved!`);
             filesWrittenMessage.push({ 
               'File': 'Main index file',
               'Code': '',
@@ -129,7 +126,6 @@ module.exports = function() {
             // generate individual language folders and index.js files
             let languageFilesWritten = 0
             languagesAndCodesAsObjects.forEach(langObj => {
-              // console.log(langObj)
         
               // create language folder
               if (!fs.existsSync(`${outputPath}/${langObj.code}`)){
@@ -150,7 +146,6 @@ module.exports = function() {
         
               // add translations
               results.forEach(result => {
-                // console.log('result', result)
                 languageIndexFile += `\t${result.Key}: "${result[langObj.langAndCode]}",\n`
               });
         
@@ -163,7 +158,6 @@ module.exports = function() {
                 if(err) {
                   return console.log(err);
                 }
-                // console.log(`${languageIndexFilePath} file was saved!`);
                 filesWrittenMessage.push({ 
                   'File': `${langObj.lang}`,
                   'Code': `${langObj.code}`,
