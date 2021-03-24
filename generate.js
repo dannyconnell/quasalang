@@ -51,7 +51,7 @@ module.exports = function() {
     
         // generate main index file import statements
         languagesAndCodesAsObjects.forEach(langObj => {
-          mainIndexFile += `import ${langObj.codeAsVariable} from './${langObj.code}' // ${langObj.lang}\n`
+          mainIndexFile += `import ${langObj.codeAsVariable} from './${langObj.code}'\n`
         });
     
         // generate main index file export statement
