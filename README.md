@@ -236,7 +236,7 @@ You can add comments to your CSV file to create sections like this:
 | goodbye        | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
 | thanks         | Thanks         | Merci               | Danke           | Спасибо         |
 | &nbsp;         |                |                     |                 |                 |
-| `# Greetings` |                |                     |                 |                 |
+| `# Hair Related` |                |                     |                 |                 |
 | buttHair       | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
 | &nbsp;         |                |                     |                 |                 |
 
