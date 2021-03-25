@@ -42,9 +42,10 @@ program
 program
   .command('create-csv')
   .alias('c')
+  .option('-f, --force', 'Force overwrite translations file (without prompt)', false)
   .description('Create a sample CSV file')
-  .action(() => {
-    createCSV()
+  .action((options) => {
+    createCSV(options)
   })
 
 program.parse(process.argv)
