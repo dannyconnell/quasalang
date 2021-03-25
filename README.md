@@ -23,6 +23,7 @@ You can also organise your phrases with empty lines & comments.
     - [Output Path](#output-path)
     - [Force Write](#force-write)
     - [No Watermark](#no-watermark)
+    - [Watch for changes](#watch-for-changes)
   - [Use Empty Rows to Split Up Your Phrases](#use-empty-rows-to-split-up-your-phrases)
   - [Use Comments to Organise your Phrases](#use-comments-to-organise-your-phrases)
   - [Use Strings as Your Keys](#use-strings-as-your-keys)
@@ -219,6 +220,21 @@ Or use the shorthand:
 ```bash
 $ quasalang g -nw
 ```
+
+### Watch for changes
+
+You can watch for changes to your translation file and auto-regenerate your language files. You can then just leave it running in the background and forget about it:
+
+```bash
+$ quasalang generate --watch
+```
+
+Or use the shorthand:
+
+```bash
+$ quasalang g -w
+```
+
 
 ## Use Empty Rows to Split Up Your Phrases
 
@@ -428,6 +444,7 @@ Options:
                         false)
   -ls, --lang-switcher  Generate language switcher options array & output to console i.e. [{
                         label: 'English', value: 'en-US'}, ..] (default: false)
+  -w, --watch           Watch CSV file for changes & regenerate files (default: false)
   -h, --help            display help for command
 ```
 

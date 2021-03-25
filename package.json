@@ -1,6 +1,6 @@
 {
   "name": "quasalang",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Generate Quasar i18n language files from a CSV file",
   "main": "index.js",
   "preferGlobal": true,
