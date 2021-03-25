@@ -5,7 +5,8 @@ let pjson = require('./package.json')
 const program = require('commander')
 const {
   createCSV,
-  generate
+  generate,
+  langSwitcherOptions
 } = require('./index.js')
 
 const helpText = `
@@ -46,6 +47,15 @@ program
   .description('Create a sample CSV file')
   .action((options) => {
     createCSV(options)
+  })
+
+program
+  .command('lang-switcher')
+  .alias('ls')
+  .option('-i, --input <mode>', 'Path to input CSV', 'translations.csv')
+  .description(`Generate language switcher options array i.e. [{ label: 'English', value: 'en-US'}, ..]`)
+  .action((options) => {
+    langSwitcher(options)
   })
 
 program.parse(process.argv)
