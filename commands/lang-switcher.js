@@ -1,10 +1,11 @@
 const fs = require('fs')
 const csv = require('csv-parser')
 
-require('./utils/getLanguagesAndCodesAsObjects.js')();
+require('../utils/getLanguagesAndCodesAsObjects.js')();
 
 module.exports = function() { 
   this.langSwitcher = function(options) {
+    
     let csvPath = options.input
 
     let results = []

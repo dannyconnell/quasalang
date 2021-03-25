@@ -26,6 +26,11 @@ You can also organise your phrases with empty lines & comments.
   - [Use Empty Rows to Split Up Your Phrases](#use-empty-rows-to-split-up-your-phrases)
   - [Use Comments to Organise your Phrases](#use-comments-to-organise-your-phrases)
   - [Use Strings as Your Keys](#use-strings-as-your-keys)
+  - [Generate language switcher array code](#generate-language-switcher-array-code)
+  - [Commands](#commands)
+    - [`generate`](#generate)
+    - [`create-csv`](#create-csv)
+    - [`lang-switcher`](#lang-switcher)
 
 ## Getting Started
 
@@ -152,7 +157,7 @@ export default {
 The default input path is `/translations.csv` but you can change it if you like:
 
 ```bash
-$ quasalang generate -input /files/my-translations.csv
+$ quasalang generate --input /files/my-translations.csv
 ```
 
 Or use the shorthand:
@@ -166,7 +171,7 @@ $ quasalang g -i /files/my-translations.csv
 The default output path is `/src/i18n` but you can change it if you like:
 
 ```bash
-$ quasalang generate -output /src/my-translations
+$ quasalang generate --output /src/my-translations
 ```
 
 Or use the shorthand:
@@ -346,4 +351,109 @@ export default {
   "Thanks": "Merci",
 }
 ```
+
+## Generate language switcher array code
+
+You can generate the code for your language switcher array (based on your CSV):
+
+```bash
+$ quasalang lang-switcher
+```
+
+Or the shorthand:
+
+```bash
+$ quasalang ls
+```
+
+This will output something like this to the console:
+
+```javascript
+Your language switcher options array:
+
+[
+  { label: 'English', value: 'en-US' },
+  { label: 'French', value: 'fr' },
+  { label: 'German', value: 'de' }
+]
+```
+
+You can also run this command automatically when you use the `generate` command to generate your language files:
+
+```bash
+$ quasalang generate --lang-switcher
+```
+
+Or the shorthand:
+
+```bash
+$ quasalang g -ls
+```
+
+The output will be something like this
+```
+Wrote 4 files:
+┌─────────┬───────────────────┬─────────┬───────────────────────────┐
+│ (index) │       File        │  Code   │           Path            │
+├─────────┼───────────────────┼─────────┼───────────────────────────┤
+│    0    │ 'Main index file' │   ''    │    'src/i18n/index.js'    │
+│    1    │     'English'     │ 'en-US' │ 'src/i18n/en-US/index.js' │
+│    2    │     'French'      │  'fr'   │  'src/i18n/fr/index.js'   │
+│    3    │     'German'      │  'de'   │  'src/i18n/de/index.js'   │
+└─────────┴───────────────────┴─────────┴───────────────────────────┘
+
+Your language switcher options array:
+
+[
+  { label: 'English', value: 'en-US' },
+  { label: 'French', value: 'fr' },
+  { label: 'German', value: 'de' }
+]
+```
+
+## Commands
+
+### `generate`
+
+```
+Usage: quasalang generate|g [options]
+
+Generate your i18n folder & all language files based on a CSV file
+
+Options:
+  -i, --input <mode>    Path to input CSV (default: "translations.csv")
+  -o, --output <mode>   Path to i18n output folder (default: "src/i18n")
+  -f, --force           Force write files (without prompt) (default: false)
+  -nw, --nowatermark    Disable the watermark ("This file was auto-generated..")  (default:
+                        false)
+  -ls, --lang-switcher  Generate language switcher options array & output to console i.e. [{
+                        label: 'English', value: 'en-US'}, ..] (default: false)
+  -h, --help            display help for command
+```
+
+### `create-csv`
+
+```
+Usage: quasalang create-csv|c [options]
+
+Create a sample CSV file (/translations.csv)
+
+Options:
+  -f, --force  Force overwrite translations file (without prompt) (default: false)
+  -h, --help   display help for command
+```
+
+### `lang-switcher`
+
+```
+Usage: quasalang lang-switcher|ls [options]
+
+Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]
+
+Options:
+  -i, --input <mode>  Path to input CSV (default: "translations.csv")
+  -h, --help          display help for command
+```
+
+
 

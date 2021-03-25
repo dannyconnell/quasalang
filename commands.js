@@ -6,7 +6,7 @@ const program = require('commander')
 const {
   createCSV,
   generate,
-  langSwitcherOptions
+  langSwitcher
 } = require('./index.js')
 
 const helpText = `
@@ -35,6 +35,7 @@ program
   .option('-o, --output <mode>', 'Path to i18n output folder', 'src/i18n')
   .option('-f, --force', 'Force write files (without prompt)', false)
   .option('-nw, --nowatermark', 'Disable the watermark ("This file was auto-generated..") ', false)
+  .option('-ls, --lang-switcher', `Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]`, false)
   .description('Generate your i18n folder & all language files based on a CSV file')
   .action((options) => {
     generate(options)
@@ -44,7 +45,7 @@ program
   .command('create-csv')
   .alias('c')
   .option('-f, --force', 'Force overwrite translations file (without prompt)', false)
-  .description('Create a sample CSV file')
+  .description('Create a sample CSV file (/translations.csv)')
   .action((options) => {
     createCSV(options)
   })
@@ -53,7 +54,7 @@ program
   .command('lang-switcher')
   .alias('ls')
   .option('-i, --input <mode>', 'Path to input CSV', 'translations.csv')
-  .description(`Generate language switcher options array i.e. [{ label: 'English', value: 'en-US'}, ..]`)
+  .description(`Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]`)
   .action((options) => {
     langSwitcher(options)
   })
