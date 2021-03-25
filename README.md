@@ -53,6 +53,16 @@ This will generate a CSV file at `/translations.csv` that looks like this:
 | goodbye | Goodbye        | Au revoir  | Auf Wiedersehen |
 | thanks  | Thanks         | Merci      | Danke           |
 
+<details>
+  <summary>View Source</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de"
+  hello,"Hello","Bonjour","Hallo"
+  goodbye,"Goodbye","Au revoir","Auf Wiedersehen"
+  thanks,"Thanks","Merci","Danke"
+  ```
+</details>
 
 ### Step 3: Add your own languages & translations
 
