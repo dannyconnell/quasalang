@@ -8,6 +8,9 @@ module.exports = function() {
     let csvPath = options.input
 
     let results = []
+
+    // sanitize csvPath & outputPath
+    if (csvPath.startsWith('/')) csvPath = csvPath.substring(1)
     
     // read the csv file
     fs.createReadStream(csvPath)
