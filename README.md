@@ -197,15 +197,15 @@ $ quasalang g -nw
 
 You can leave empty rows in your CSV file, like this:
 
-| Key                     | English, en-US | French, fr          | German, de      | Russian, ru     |
-|-------------------------|----------------|---------------------|-----------------|-----------------|
-|  |                |                     |                 |                 |
-| hello                   | Hello          | Bonjour             | Hallo           | Привет          |
-| goodbye                 | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
-| thanks                  | Thanks         | Merci               | Danke           | Спасибо         |
-|  |                |                     |                 |                 |
-| buttHair                | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
-|  |                |                     |                 |                 |
+| Key      | English, en-US | French, fr          | German, de      | Russian, ru     |
+|----------|----------------|---------------------|-----------------|-----------------|
+| &nbsp;   |                |                     |                 |                 |
+| hello    | Hello          | Bonjour             | Hallo           | Привет          |
+| goodbye  | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
+| thanks   | Thanks         | Merci               | Danke           | Спасибо         |
+| &nbsp;   |                |                     |                 |                 |
+| buttHair | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
+| &nbsp;   |                |                     |                 |                 |
 
 And this will generate equivalent empty lines in your generated language files:
 
@@ -228,17 +228,18 @@ export default {
 
 You can add comments to your CSV file to create sections like this:
 
-| Key         | English, en-US | French, fr          | German, de      | Russian, ru     |
-|-------------|----------------|---------------------|-----------------|-----------------|
-|             |                |                     |                 |                 |
-| # Greetings |                |                     |                 |                 |
-| hello       | Hello          | Bonjour             | Hallo           | Привет          |
-| goodbye     | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
-| thanks      | Thanks         | Merci               | Danke           | Спасибо         |
-|             |                |                     |                 |                 |
-| # Hair Related     |                |                     |                 |                 |
-| buttHair    | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
-|             |                |                     |                 |                 |
+| Key            | English, en-US | French, fr          | German, de      | Russian, ru     |
+|----------------|----------------|---------------------|-----------------|-----------------|
+| &nbsp;         |                |                     |                 |                 |
+| # Greetings    |                |                     |                 |                 |
+| hello          | Hello          | Bonjour             | Hallo           | Привет          |
+| goodbye        | Goodbye        | Au revoir           | Auf Wiedersehen | До свидания     |
+| thanks         | Thanks         | Merci               | Danke           | Спасибо         |
+| &nbsp;         |                |                     |                 |                 |
+| # Hair Related |                |                     |                 |                 |
+| buttHair       | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
+| &nbsp;         |                |                     |                 |                 |
+
 
 And this will add equivalent comments to your generated files:
 
@@ -263,8 +264,8 @@ export default {
 
 If you want to use strings as your keys, just surround your keys in double quotes:
 
-| Key     | English, en-US | French, fr | German, de      |
-|---------|----------------|------------|-----------------|
+| Key           | English, en-US | French, fr | German, de      |
+|---------------|----------------|------------|-----------------|
 | **"Hello"**   | Hello          | Bonjour    | Hallo           |
 | **"Goodbye"** | Goodbye        | Au revoir  | Auf Wiedersehen |
 | **"Thanks"**  | Thanks         | Merci      | Danke           |
