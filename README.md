@@ -77,6 +77,18 @@ Use a CSV editor (such as the [VSCode Extension "Edit csv"](https://marketplace.
 | thanks   | Thanks         | Merci               | Danke           | Спасибо         |
 | buttHair | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
 
+<details>
+  <summary>View Source</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de","Russian, ru"
+  hello,"Hello","Bonjour","Hallo",Привет
+  goodbye,"Goodbye","Au revoir","Auf Wiedersehen",До свидания
+  thanks,"Thanks","Merci","Danke",Спасибо
+  buttHair,"Butt hair","Cheveux bout à bout","Hintern Haare",стыковые волосы
+  ```
+</details>
+
 ### Step 4: Generate your language files
 
 Generate all the language files you need based on your CSV:
@@ -217,6 +229,21 @@ You can leave empty rows in your CSV file, like this:
 | buttHair | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
 | &nbsp;   |                |                     |                 |                 |
 
+<details>
+  <summary>View Source</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de","Russian, ru"
+  ,,,,
+  hello,"Hello","Bonjour","Hallo",Привет
+  goodbye,"Goodbye","Au revoir","Auf Wiedersehen",До свидания
+  thanks,"Thanks","Merci","Danke",Спасибо
+  ,,,,
+  buttHair,"Butt hair","Cheveux bout à bout","Hintern Haare",стыковые волосы
+  ,,,,
+  ```
+</details>
+
 And this will generate equivalent empty lines in your generated language files:
 
 ```javascript
@@ -250,6 +277,22 @@ You can add comments to your CSV file to create sections like this:
 | buttHair       | Butt hair      | Cheveux bout à bout | Hintern Haare   | стыковые волосы |
 | &nbsp;         |                |                     |                 |                 |
 
+<details>
+  <summary>View Source</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de","Russian, ru"
+  ,,,,
+  # Greetings
+  hello,"Hello","Bonjour","Hallo",Привет
+  goodbye,"Goodbye","Au revoir","Auf Wiedersehen",До свидания
+  thanks,"Thanks","Merci","Danke",Спасибо
+  ,,,,
+  # Hair Related
+  buttHair,"Butt hair","Cheveux bout à bout","Hintern Haare",стыковые волосы
+  ,,,,
+  ```
+</details>
 
 And this will add equivalent comments to your generated files:
 
@@ -279,6 +322,17 @@ If you want to use strings as your keys, just surround your keys in double quote
 | **"Hello"**   | Hello          | Bonjour    | Hallo           |
 | **"Goodbye"** | Goodbye        | Au revoir  | Auf Wiedersehen |
 | **"Thanks"**  | Thanks         | Merci      | Danke           |
+
+<details>
+  <summary>View Source</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de"
+  """Hello""","Hello","Bonjour","Hallo"
+  """Goodbye""","Goodbye","Au revoir","Auf Wiedersehen"
+  """Thanks""","Thanks","Merci","Danke"
+  ```
+</details>
 
 This will generate language files like this:
 
