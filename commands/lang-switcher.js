@@ -6,15 +6,13 @@ require('../utils/getLanguagesAndCodesAsObjects.js')();
 module.exports = function() { 
   this.langSwitcher = function(options) {
     
-    let csvPath = options.input
-
     let results = []
 
-    // sanitize csvPath & outputPath
-    if (csvPath.startsWith('/')) csvPath = csvPath.substring(1)
+    // sanitize options.input & outputPath
+    if (options.input.startsWith('/')) options.input = options.input.substring(1)
     
     // read the csv file
-    fs.createReadStream(csvPath)
+    fs.createReadStream(options.input)
       .pipe(csv())
       .on('data', (data) => results.push(data))
       .on('end', () => {

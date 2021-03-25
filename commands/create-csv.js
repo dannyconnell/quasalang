@@ -4,12 +4,11 @@ const { prompt } = require('inquirer')
 
 module.exports = function() { 
   this.createCSV = function(options) {
-    let forceWrite = options.force
     let outputPath = 'translations.csv'
 
     // check if output file exists
     if (fs.existsSync(outputPath)) {
-      if (!forceWrite) {
+      if (!options.force) {
         prompt([
           {
             type: 'confirm',
