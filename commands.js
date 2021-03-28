@@ -6,7 +6,8 @@ const program = require('commander')
 const {
   createCSV,
   generate,
-  langSwitcher
+  langSwitcher,
+  listCodes
 } = require('./index.js')
 
 const helpText = `
@@ -58,6 +59,14 @@ program
   .description(`Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]`)
   .action((options) => {
     langSwitcher(options)
+  })
+
+program
+  .command('list-codes')
+  .alias('lc')
+  .description(`List i18n language codes`)
+  .action((options) => {
+    listCodes(options)
   })
 
 program.parse(process.argv)
