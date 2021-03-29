@@ -28,10 +28,12 @@ You can also organise your phrases with empty lines & comments.
   - [Use Comments to Organise your Phrases](#use-comments-to-organise-your-phrases)
   - [Use Strings as Your Keys](#use-strings-as-your-keys)
   - [Generate language switcher array code](#generate-language-switcher-array-code)
+  - [Search and List i18n Locale Codes](#search-and-list-i18n-locale-codes)
   - [Commands](#commands)
     - [`generate`](#generate)
     - [`create-csv`](#create-csv)
     - [`lang-switcher`](#lang-switcher)
+    - [`list-codes`](#list-codes)
 
 ## Getting Started
 
@@ -427,6 +429,98 @@ Your language switcher options array:
 ]
 ```
 
+## Search and List i18n Locale Codes
+
+Don't know the locale code for a language? Just search for it:
+
+```bash
+$ quasalang list-codes
+
+? Enter a search query (e.g. "russian") or hit Enter to list all codes: italian
+
+
+  _____ 
+ |_   _|
+   | |  
+   | |  
+  _| |_ 
+ |_____|
+        
+        
+Italian, it
+Italian (Italy), it_IT
+Italian (Switzerland), it_CH
+```
+
+Or just hit enter to list them all:
+
+```bash
+           
+     /\    
+    /  \   
+   / /\ \  
+  / ____ \ 
+ /_/    \_\
+           
+           
+Afrikaans, af
+Afrikaans (Namibia), af_NA
+Afrikaans (South Africa), af_ZA
+Akan, ak
+Akan (Ghana), ak_GH
+Albanian, sq
+Albanian (Albania), sq_AL
+Amharic, am
+Amharic (Ethiopia), am_ET
+Arabic, ar
+Arabic (Algeria), ar_DZ
+Arabic (Bahrain), ar_BH
+Arabic (Egypt), ar_EG
+Arabic (Iraq), ar_IQ
+Arabic (Jordan), ar_JO
+Arabic (Kuwait), ar_KW
+Arabic (Lebanon), ar_LB
+Arabic (Libya), ar_LY
+Arabic (Morocco), ar_MA
+Arabic (Oman), ar_OM
+Arabic (Qatar), ar_QA
+Arabic (Saudi Arabia), ar_SA
+Arabic (Sudan), ar_SD
+Arabic (Syria), ar_SY
+Arabic (Tunisia), ar_TN
+Arabic (United Arab Emirates), ar_AE
+Arabic (Yemen), ar_YE
+Armenian, hy
+Armenian (Armenia), hy_AM
+Assamese (India), as_IN
+Assamese, as
+Asu, asa
+Asu (Tanzania), asa_TZ
+Azerbaijani, az
+Azerbaijani (Cyrillic), az_Cyrl
+Azerbaijani (Cyrillic, Azerbaijan), az_Cyrl_AZ
+Azerbaijani (Latin), az_Latn
+Azerbaijani (Latin, Azerbaijan), az_Latn_AZ
+
+
+  ____  
+ |  _ \ 
+ | |_) |
+ |  _ < 
+ | |_) |
+ |____/ 
+        
+        
+Bambara, bm
+Bambara (Mali), bm_ML
+Basque, eu
+Basque (Spain), eu_ES
+
+... etc ...
+```
+
+You can then copy and paste your language name and code straight into your CSV column header.
+
 ## Commands
 
 ### `generate`
@@ -472,5 +566,15 @@ Options:
   -h, --help          display help for command
 ```
 
+### `list-codes`
+
+```
+Usage: quasalang list-codes|lc [options]
+
+Search & list i18n locale codes
+
+Options:
+  -h, --help  display help for command
+```
 
 

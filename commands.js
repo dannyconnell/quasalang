@@ -64,7 +64,7 @@ program
 program
   .command('list-codes')
   .alias('lc')
-  .description(`List i18n language codes`)
+  .description(`Search & list i18n locale codes`)
   .action((options) => {
     listCodes(options)
   })
