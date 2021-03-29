@@ -1,13 +1,16 @@
 # Quasalang CLI
 
-> Generate all your Quasar i18n language files from a CSV file
+> Generate all the i18n language files your Quasar Framework app needs - from a CSV file
 
 
-Quasalang is a global CLI tool that allows you to generate all your i18n language files (including the main index.js file) instantly from a single, easy to update CSV file.
+Quasalang is a global CLI tool (for Quasar Framework projects) that allows you to generate all your i18n language files (including the main index.js file) instantly from a single, easy to update CSV file.
 
 It will also generate a sample CSV file for you, so you can easily get started.
 
-You can also organise your phrases with empty lines & comments.
+You can also: 
+- Organise your phrases with empty lines & comments
+- Generate your language switcher array code
+- Search & list i18n locale codes easily
 
 ## Contents
 
@@ -16,20 +19,23 @@ You can also organise your phrases with empty lines & comments.
   - [Getting Started](#getting-started)
     - [Step 1: Install globally](#step-1-install-globally)
     - [Step 2: Generate a Sample CSV file](#step-2-generate-a-sample-csv-file)
-    - [Step 3: Add your own languages & translations](#step-3-add-your-own-languages--translations)
+    - [Step 3: Add your own languages and translations](#step-3-add-your-own-languages-and-translations)
     - [Step 4: Generate your language files](#step-4-generate-your-language-files)
   - [Options](#options)
     - [Input Path](#input-path)
     - [Output Path](#output-path)
     - [Force Write](#force-write)
     - [No Watermark](#no-watermark)
+    - [Language Switcher Array Code](#language-switcher-array-code)
     - [Watch for changes](#watch-for-changes)
-  - [Use Empty Rows to Split Up Your Phrases](#use-empty-rows-to-split-up-your-phrases)
-  - [Use Comments to Organise your Phrases](#use-comments-to-organise-your-phrases)
-  - [Use Strings as Your Keys](#use-strings-as-your-keys)
-  - [Add Multi-Line Phrases](#add-multi-line-phrases)
-  - [Generate language switcher array code](#generate-language-switcher-array-code)
-  - [Search and List i18n Locale Codes](#search-and-list-i18n-locale-codes)
+  - [Advanced Features](#advanced-features)
+    - [Use Empty Rows to Split Up Your Phrases](#use-empty-rows-to-split-up-your-phrases)
+    - [Use Comments to Organise your Phrases](#use-comments-to-organise-your-phrases)
+    - [Use Strings as Your Keys](#use-strings-as-your-keys)
+    - [Add Multi-Line Phrases](#add-multi-line-phrases)
+  - [Extra Tools](#extra-tools)
+    - [Generate language switcher array code](#generate-language-switcher-array-code)
+    - [Search and List i18n Locale Codes](#search-and-list-i18n-locale-codes)
   - [Commands](#commands)
     - [`generate`](#generate)
     - [`create-csv`](#create-csv)
@@ -73,7 +79,7 @@ This will generate a CSV file at `/translations.csv` that looks like this:
   ```
 </details>
 
-### Step 3: Add your own languages & translations
+### Step 3: Add your own languages and translations
 
 Use a CSV editor (such as the [VSCode Extension "Edit csv"](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv)) to add your own languages & phrases.
 
@@ -162,11 +168,9 @@ The default input path is `/translations.csv` but you can change it if you like:
 
 ```bash
 $ quasalang generate --input /files/my-translations.csv
-```
 
-Or use the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -i /files/my-translations.csv
 ```
 
@@ -176,11 +180,9 @@ The default output path is `/src/i18n` but you can change it if you like:
 
 ```bash
 $ quasalang generate --output /src/my-translations
-```
 
-Or use the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -o /src/my-translations
 ```
 
@@ -196,11 +198,9 @@ You can skip this prompt if you like:
 
 ```bash
 $ quasalang generate --force
-```
 
-Or use the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -f
 ```
 
@@ -216,13 +216,25 @@ You can disable this if you like:
 
 ```bash
 $ quasalang generate --nowatermark
-```
 
-Or use the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -nw
 ```
+
+### Language Switcher Array Code
+
+You also generate the array code for your language switcher:
+
+```bash
+$ quasalang generate --lang-switcher
+
+# or the shorthand...
+
+$ quasalang g -ls
+```
+
+See [Generate language switcher array code](#generate-language-switcher-array-code) for more info.
 
 ### Watch for changes
 
@@ -230,16 +242,15 @@ You can watch for changes to your translation file and auto-regenerate your lang
 
 ```bash
 $ quasalang generate --watch
-```
 
-Or use the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -w
 ```
 
+## Advanced Features
 
-## Use Empty Rows to Split Up Your Phrases
+### Use Empty Rows to Split Up Your Phrases
 
 You can leave empty rows in your CSV file, like this:
 
@@ -285,7 +296,7 @@ export default {
 }
 ```
 
-## Use Comments to Organise your Phrases
+### Use Comments to Organise your Phrases
 
 You can add comments to your CSV file to create sections like this:
 
@@ -337,7 +348,7 @@ export default {
 }
 ```
 
-## Use Strings as Your Keys
+### Use Strings as Your Keys
 
 If you want to use strings as your keys, just surround your keys in double quotes:
 
@@ -371,7 +382,7 @@ export default {
 }
 ```
 
-## Add Multi-Line Phrases
+### Add Multi-Line Phrases
 
 You can add multi-line phrases, like in the last row here:
 
@@ -420,17 +431,17 @@ Hope you like it!`,
 }
 ```
 
-## Generate language switcher array code
+## Extra Tools
+
+### Generate language switcher array code
 
 You can generate the code for your language switcher array (based on your CSV):
 
 ```bash
 $ quasalang lang-switcher
-```
 
-Or the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang ls
 ```
 
@@ -450,11 +461,9 @@ You can also run this command automatically when you use the `generate` command 
 
 ```bash
 $ quasalang generate --lang-switcher
-```
 
-Or the shorthand:
+# or the shorthand...
 
-```bash
 $ quasalang g -ls
 ```
 
@@ -479,7 +488,7 @@ Your language switcher options array:
 ]
 ```
 
-## Search and List i18n Locale Codes
+### Search and List i18n Locale Codes
 
 Don't know the locale code for a language? Just search for it:
 
