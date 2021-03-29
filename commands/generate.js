@@ -162,7 +162,7 @@ module.exports = function() {
                     // or just add the phrase key pair
                     else {
                       languageIndexFile += `\t`
-                      let phraseKeyPair = `${result.Key}: "${result[langObj.langAndCode]}",`
+                      let phraseKeyPair = `${result.Key}: \`${result[langObj.langAndCode]}\`,`
                       // if no phrase provided, comment it out
                       if (!result[langObj.langAndCode]) {
                         phraseKeyPair = `// ${phraseKeyPair} // no phrase provided - fallback to default`
