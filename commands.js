@@ -39,34 +39,26 @@ program
   .option('-ls, --lang-switcher', `Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]`, false)
   .option('-w, --watch', `Watch CSV file for changes & regenerate files`, false)
   .description('Generate your i18n folder & all language files based on a CSV file')
-  .action((options) => {
-    generate(options)
-  })
+  .action(generate)
 
 program
   .command('create-csv')
   .alias('c')
   .option('-f, --force', 'Force overwrite translations file (without prompt)', false)
   .description('Create a sample CSV file (/translations.csv)')
-  .action((options) => {
-    createCSV(options)
-  })
+  .action(createCSV)
 
 program
   .command('lang-switcher')
   .alias('ls')
   .option('-i, --input <mode>', 'Path to input CSV', 'translations.csv')
   .description(`Generate language switcher options array & output to console i.e. [{ label: 'English', value: 'en-US'}, ..]`)
-  .action((options) => {
-    langSwitcher(options)
-  })
+  .action(langSwitcher)
 
 program
   .command('list-codes')
   .alias('lc')
   .description(`Search & list i18n locale codes`)
-  .action((options) => {
-    listCodes(options)
-  })
+  .action(listCodes)
 
 program.parse(process.argv)
