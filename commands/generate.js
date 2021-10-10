@@ -53,10 +53,18 @@ module.exports = function() {
           // generate main index file export statement
           mainIndexFile += `\n`
           mainIndexFile += `export default { \n`
+	  let isFirstLine = true
+	  let lastDescription = ''
           languagesAndCodesAsObjects.forEach(langObj => {
-            mainIndexFile += `\t'${langObj.code}': ${langObj.codeAsVariable}, // ${langObj.lang}\n`
+            if (isFirstLine) {
+		isFirstLine = false
+	    } else {
+		mainIndexFile += `, // $(lastDescription)\n`
+	    }
+            mainIndexFile += `  '${langObj.code}': ${langObj.codeAsVariable}`
+	    lastDescription = langObj.lang
           });
-          mainIndexFile += `}`
+          mainIndexFile += ` // $(lastDescription)\n}\n`
       
           // check if output folder exists & prompt to confirm
           if (fs.existsSync(options.output)) {
@@ -152,23 +160,34 @@ module.exports = function() {
                 languageIndexFile += `export default {\n`
           
                 // add translations
+		isFirstLine = true
+		let addComma = false
                 results.forEach(result => {
+		  if (isFirstLine) {
+		    isFirstLine = false
+		  } else {
+		    if (addComma) {
+		      languageIndexFile += `,\n`
+		    } else {
+		      languageIndexFile += `\n`
+		    }
+		  }
                   // row is not empty
                   if (result.Key) {
                     // add a comment if csv row is a comment
                     if (result.Key.startsWith('#')) {
-                      languageIndexFile += `\t// ${result.Key.substring(1).trim()}\n`
+                      languageIndexFile += `  // ${result.Key.substring(1).trim()}\n`
                     }
                     // or just add the phrase key pair
                     else {
-                      languageIndexFile += `\t`
-                      let phraseKeyPair = `${result.Key}: \`${result[langObj.langAndCode]}\`,`
+                      languageIndexFile += `  `
+                      let phraseKeyPair = `${result.Key}: '${result[langObj.langAndCode].replace(/'/g, '\\\'')}'`
+		      addComma = true
                       // if no phrase provided, comment it out
                       if (!result[langObj.langAndCode]) {
                         phraseKeyPair = `// ${phraseKeyPair} // no phrase provided - fallback to default`
                       }
                       languageIndexFile += phraseKeyPair
-                      languageIndexFile += `\n`
                     }
                   }
                   // row is empty, add a blank line
@@ -178,7 +197,7 @@ module.exports = function() {
                 });
           
                 // add closing brace
-                languageIndexFile += `}`
+                languageIndexFile += `\n}\n`
           
                 // write the language index file
                 let languageIndexFilePath = `${options.output}/${langObj.code}/index.js`
