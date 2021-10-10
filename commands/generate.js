@@ -168,6 +168,7 @@ module.exports = function () {
                   } else {
                     if (addComma) {
                       languageIndexFile += `,\n`
+                      addComma = false
                     } else {
                       languageIndexFile += `\n`
                     }
@@ -176,7 +177,7 @@ module.exports = function () {
                   if (result.Key) {
                     // add a comment if csv row is a comment
                     if (result.Key.startsWith('#')) {
-                      languageIndexFile += `  // ${result.Key.substring(1).trim()}\n`
+                      languageIndexFile += `  // ${result.Key.substring(1).trim()}`
                     }
                     // or just add the phrase key pair
                     else {
@@ -192,7 +193,7 @@ module.exports = function () {
                   }
                   // row is empty, add a blank line
                   else {
-                    languageIndexFile += `\n`
+                    languageIndexFile += ``
                   }
                 });
 
