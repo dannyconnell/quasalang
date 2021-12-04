@@ -63,7 +63,7 @@ module.exports = function() {
           // print letter header
           console.log('\n')
           console.log(colors.green(figlet.textSync(letter, {
-            font: 'big',
+            font: 'Big',
             width: 80,
             whitespaceBreak: false
           })));
@@ -82,7 +82,7 @@ module.exports = function() {
 
     function noResults() {
       console.log(colors.yellow(figlet.textSync('No results found.', {
-        font: 'big',
+        font: 'Big',
         width: 80,
         whitespaceBreak: true
       })));
