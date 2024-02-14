@@ -36,6 +36,7 @@ You can also:
   - [Extra Tools](#extra-tools)
     - [Generate language switcher array code](#generate-language-switcher-array-code)
     - [Search and List i18n Locale Codes](#search-and-list-i18n-locale-codes)
+    - [Search and Add i18n Locale Codes](#search-and-add-i18n-locale-codes)
   - [Commands](#commands)
     - [`generate`](#generate)
     - [`create-csv`](#create-csv)
@@ -579,6 +580,21 @@ Basque (Spain), eu_ES
 ```
 
 You can then copy and paste your language name and code straight into your CSV column header.
+
+
+### Search and Add i18n Locale Codes
+
+Don't know the locale code for a language? Just search for it and selected language name, code straight into `/translations.csv` column header:
+
+```bash
+$ quasalang list-codes --add
+
+? Enter a search query (e.g. "russian") or hit Enter to list all codes: italian
+
+? Select languages to add: Russian, ru, Russian (Moldova), ru_MD
+
+CSV file successfully written with new lang codes: Russian, ru, Russian (Moldova), ru_MD.
+```
 
 ## Commands
 
