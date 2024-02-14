@@ -43,7 +43,11 @@ module.exports = function () {
                             const keyParts = key.split('.');
                             let currentObj =
                                 translations[languageCode] ||
-                                (translations[languageCode] = {});
+                                (translations[languageCode] = {
+                                    lang: languageLabel,
+                                    code: languageCode,
+                                    label: `${languageLabel}, ${languageCode}`,
+                                });
 
                             for (const part of keyParts.slice(0, -1)) {
                                 currentObj =
@@ -103,7 +107,14 @@ module.exports = function () {
                             for (const langCode in translations) {
                                 const langObj = translations[langCode];
                                 const langFilePath = `${options.output}/${langCode}.js`;
-                                const langFileContent = `export default ${JSON.stringify(
+                                let langFileContent = `// ${langObj.label}\n`;
+
+                                // add watermark
+                                if (!options.nowatermark) {
+                                    langFileContent += `// ${watermark}\n\n`;
+                                }
+
+                                langFileContent += `export default ${JSON.stringify(
                                     langObj,
                                     null,
                                     2
