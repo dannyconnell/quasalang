@@ -161,7 +161,7 @@ module.exports = function() {
                         for (const part of keyParts.slice(0, -1)) {
                           currentObj = currentObj[part] || (currentObj[part] = {});
                         }
-                        if (value.trim()) {
+                        if (value) {
                           currentObj[keyParts.slice(-1)[0]] = value.trim();
                         }
                     }

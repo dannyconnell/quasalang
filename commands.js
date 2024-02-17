@@ -3,7 +3,7 @@
 let pjson = require("./package.json");
 
 const program = require("commander");
-const { createCSV, generate, langSwitcher, listCodes } = require("./index.js");
+const { createCSV, generate, langSwitcher, listCodes, translate } = require("./index.js");
 
 const helpText = `
 
@@ -48,6 +48,17 @@ program
   )
   .action((options) => {
     generate(options);
+  });
+
+program
+  .command("translate")
+  .alias("t")
+  .option("-f, --force", "Force write files (without prompt)", false)
+  .description(
+    "Translate your CSV file"
+  )
+  .action((options) => {
+    translate(options);
   });
 
 program
