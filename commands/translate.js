@@ -67,12 +67,8 @@ module.exports = function () {
                 translations.push(row);
             })
             .on('end', async () => {
-                // Translate and fill empty columns
                 for (let index = 0; index < translations.length; index++) {
                     const row = translations[index];
-                    if (index === 0) {
-                        continue; // Skip header row
-                    }
                     const newRow = { ...row };
                     for (let i = 2; i < Object.keys(row).length; i++) {
                         const language = Object.keys(row)[i];
@@ -90,10 +86,10 @@ module.exports = function () {
                                 .catch((err) => {
                                     console.error(err);
                                 });
-                            await delay(100); // Add 1-second delay
+                            // await delay(100); // Add 1-second delay
                         }
                     }
-                    await changeLineInFile(index, newRow)
+                    await changeLineInFile(index+1, newRow)
                 }
                 console.log('Translation done.');
             });
