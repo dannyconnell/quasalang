@@ -128,7 +128,7 @@ module.exports = function() {
               // generate individual language folders and index.js files
               let languageFilesWritten = 0
               languagesAndCodesAsObjects.forEach(langObj => {
-          
+                
                 // create language folder
                 if (!fs.existsSync(`${options.output}/${langObj.code}`)){
                   fs.mkdirSync(`${options.output}/${langObj.code}`);
@@ -136,7 +136,8 @@ module.exports = function() {
           
                 // generate language index file
                 let languageIndexFile = ``
-          
+                let translations = {}
+
                 // add language comment to the top
                 languageIndexFile += `// ${langObj.lang}, ${langObj.code}`
           
@@ -148,37 +149,32 @@ module.exports = function() {
                 // add blank lines
                 languageIndexFile += `\n\n`
           
-                // add opening export statement
-                languageIndexFile += `export default {\n`
-          
                 // add translations
                 results.forEach(result => {
-                  // row is not empty
-                  if (result.Key) {
-                    // add a comment if csv row is a comment
-                    if (result.Key.startsWith('#')) {
-                      languageIndexFile += `\t// ${result.Key.substring(1).trim()}\n`
+                    // row is not empty
+                    if (result.Key && !result.Key.startsWith('#')) {
+                        const key = result.Key;
+                        const value = result[langObj.langAndCode]
+                        const keyParts = key.split(".");
+                        let currentObj = translations || (translations = {});
+                
+                        for (const part of keyParts.slice(0, -1)) {
+                          currentObj = currentObj[part] || (currentObj[part] = {});
+                        }
+                        if (value) {
+                          currentObj[keyParts.slice(-1)[0]] = value.trim();
+                        }
                     }
-                    // or just add the phrase key pair
-                    else {
-                      languageIndexFile += `\t`
-                      let phraseKeyPair = `${result.Key}: \`${result[langObj.langAndCode]}\`,`
-                      // if no phrase provided, comment it out
-                      if (!result[langObj.langAndCode]) {
-                        phraseKeyPair = `// ${phraseKeyPair} // no phrase provided - fallback to default`
-                      }
-                      languageIndexFile += phraseKeyPair
-                      languageIndexFile += `\n`
-                    }
-                  }
-                  // row is empty, add a blank line
-                  else {
-                    languageIndexFile += `\n`
-                  }
                 });
+
+                const languageData = JSON.stringify(
+                    translations,
+                    null,
+                    2
+                );
           
                 // add closing brace
-                languageIndexFile += `}`
+                languageIndexFile += `export default ${languageData};\n`
           
                 // write the language index file
                 let languageIndexFilePath = `${options.output}/${langObj.code}/index.js`
